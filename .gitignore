@@ -1,0 +1,34 @@
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Data files (generated dynamically)
+*.csv
+*.txt
+!requirements.txt
+*.json
+*.log
+*.zip
+*.gz
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
