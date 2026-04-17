@@ -1,0 +1,5 @@
+# Data files downloaded by scripts
+data/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
