@@ -26,17 +26,13 @@ bool KeyProcessor::processKey(int key) {
         case '7': currentMode = Mode::GLITCH;        std::cout << "Mode: Glitch" << std::endl; break;
 
         // Стрілочки — зсув (offsetX, offsetY)
-        case 81:  // Left arrow
-        case 2:
+        case 2:   // Left arrow (OpenCV)
             offsetX -= 10; break;
-        case 83:  // Right arrow
-        case 3:
+        case 3:   // Right arrow (OpenCV)
             offsetX += 10; break;
-        case 82:  // Up arrow
-        case 0:
+        case 0:   // Up arrow (OpenCV)
             offsetY -= 10; break;
-        case 84:  // Down arrow
-        case 1:
+        case 1:   // Down arrow (OpenCV)
             offsetY += 10; break;
 
         // Зум: '+' / '-'
