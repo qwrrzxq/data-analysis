@@ -1,0 +1,7 @@
+# Build directory
+build/
+
+# Compiled binaries
+lab6
+*.o
+*.out
