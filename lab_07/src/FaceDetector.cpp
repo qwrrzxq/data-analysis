@@ -88,17 +88,18 @@ void FaceDetector::workerLoop() {
         cv::Mat blob = cv::dnn::blobFromImage(frame, 1.0, cv::Size(300, 300),
                                                cv::Scalar(104.0, 177.0, 123.0));
         net.setInput(blob);
-        cv::Mat detections = net.forward();
+        cv::Mat output = net.forward();
+
+        cv::Mat detections(output.size[2], output.size[3], CV_32F, output.ptr<float>());
 
         std::vector<cv::Rect> newFaces;
-        int numDetections = detections.size[2];
-        for (int i = 0; i < numDetections; i++) {
-            float confidence = detections.at<float>(0, 0, i, 2);
+        for (int i = 0; i < detections.rows; i++) {
+            float confidence = detections.at<float>(i, 2);
             if (confidence > threshold) {
-                int x1 = static_cast<int>(detections.at<float>(0, 0, i, 3) * frame.cols);
-                int y1 = static_cast<int>(detections.at<float>(0, 0, i, 4) * frame.rows);
-                int x2 = static_cast<int>(detections.at<float>(0, 0, i, 5) * frame.cols);
-                int y2 = static_cast<int>(detections.at<float>(0, 0, i, 6) * frame.rows);
+                int x1 = static_cast<int>(detections.at<float>(i, 3) * frame.cols);
+                int y1 = static_cast<int>(detections.at<float>(i, 4) * frame.rows);
+                int x2 = static_cast<int>(detections.at<float>(i, 5) * frame.cols);
+                int y2 = static_cast<int>(detections.at<float>(i, 6) * frame.rows);
 
                 x1 = std::max(0, x1);
                 y1 = std::max(0, y1);
