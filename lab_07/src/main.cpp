@@ -66,7 +66,12 @@ int main() {
         cv::Mat processed = frameProcessor.process(frame, keyProcessor);
 
         if (keyProcessor.shouldDetectFaces() && faceDetector.isLoaded()) {
-            faceDetector.drawDetections(processed);
+            std::vector<cv::Rect> faces = faceDetector.getDetections();
+            for (const auto& face : faces) {
+                cv::rectangle(processed, face, cv::Scalar(0, 0, 255), 2);
+                cv::putText(processed, "Face", cv::Point(face.x, face.y - 8),
+                            cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0, 0, 255), 2);
+            }
         }
 
         mouseHandler.drawOverlay(processed);

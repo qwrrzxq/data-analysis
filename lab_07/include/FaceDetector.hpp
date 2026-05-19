@@ -15,7 +15,6 @@ public:
 
     void submitFrame(const cv::Mat& frame);
     std::vector<cv::Rect> getDetections() const;
-    void drawDetections(cv::Mat& frame) const;
     void setSimulateDelay(bool enabled);
     bool isSimulatingDelay() const;
     bool isLoaded() const;

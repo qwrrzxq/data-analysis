@@ -61,15 +61,6 @@ std::vector<cv::Rect> FaceDetector::getDetections() const {
     return faces;
 }
 
-void FaceDetector::drawDetections(cv::Mat& frame) const {
-    std::vector<cv::Rect> currentFaces = getDetections();
-    for (const auto& face : currentFaces) {
-        cv::rectangle(frame, face, cv::Scalar(0, 0, 255), 2);
-        cv::putText(frame, "Face", cv::Point(face.x, face.y - 8),
-                    cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0, 0, 255), 2);
-    }
-}
-
 void FaceDetector::workerLoop() {
     while (running) {
         cv::Mat frame;
