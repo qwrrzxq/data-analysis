@@ -1,0 +1,5 @@
+build/
+lab7
+*.o
+*.out
+models/
